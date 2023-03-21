@@ -1,11 +1,12 @@
-// ignore_for_file: unused_local_variable, unnecessary_new, prefer_const_constructors
+// ignore_for_file: unused_local_variable, unnecessary_new, prefer_const_constructors, use_build_context_synchronously
+
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:samui_vr_app/homescreen/home_bottom.dart';
 import 'package:samui_vr_app/model/user_model.dart';
 import 'package:samui_vr_app/screen/login.dart';
 
@@ -164,9 +165,10 @@ class _RegisterState extends State<Register> {
                       Center(
                         child: Text(
                           "Create Account",
-                          style: GoogleFonts.fredokaOne(
+                          style: GoogleFonts.baloo2(
                             color: Colors.grey[850],
                             fontSize: 30,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -209,6 +211,7 @@ class _RegisterState extends State<Register> {
 
     userModel.email = user!.email;
     userModel.uid = user.uid;
+    
 
     await firebaseFirestore
         .collection("users")

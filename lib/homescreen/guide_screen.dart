@@ -1,172 +1,172 @@
-// ignore_for_file: deprecated_member_use, prefer_const_constructors, unused_import, unused_local_variable, unused_element, sort_child_properties_last, unnecessary_new, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, use_build_context_synchronously, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:samui_vr_app/homescreen/home_bottom.dart';
-import 'package:samui_vr_app/utils/app_layout.dart';
-import 'package:samui_vr_app/utils/app_style.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:samui_vr_app/bottom_navigation/pages/home_bottom.dart';
+import 'package:samui_vr_app/screens/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class GuideScreen extends StatefulWidget {
-  const GuideScreen({Key? key}) : super(key: key);
+class GuidePage extends StatefulWidget {
+  GuidePage({Key? key}) : super(key: key);
 
   @override
-  State<GuideScreen> createState() => _GuideScreenState();
+  State<GuidePage> createState() => _GuidePageState();
 }
 
-class _GuideScreenState extends State<GuideScreen> {
-  final PageController _pageController = PageController();
-  final String _imageBG = 'assets/images/chaweng-beach.jpg';
-  final List<String> _imageList = const [
-    'assets/images/guide-1.png',
-    'assets/images/guide-2.png',
-    'assets/images/guide-3.png',
-  ];
-  // int Homemain = 0;
-  double _currentPage = 0;
-  bool _hideIntroduction = false;
+class _GuidePageState extends State<GuidePage> {
+  final controller = PageController();
+  bool isLastPage = false;
 
   @override
-  void initState() {
-    _pageController.addListener(() {
-      setState(() {
-        _currentPage = _pageController.page!;
-      });
-    });
-    super.initState();
+  void dispose() {
+    controller.dispose();
+
+    super.dispose();
   }
 
-  Widget _pageViewChildimage(String imageString) {
-    return Image.asset(
-      imageString,
-      fit: BoxFit.fitWidth,
-    );
-  }
-
-  Widget _pageViewIndicator(int location) {
-    return Padding(
-        padding: const EdgeInsets.only(right: 6, left: 6),
-        child: Icon(
-          Icons.lens,
-          size: 14,
-          color: location - 1 <= _currentPage && _currentPage < location
-              ? Colors.blue[900]
-              : Colors.grey[600],
-        ));
-  }
-
+  Widget buildPage({
+    required Color color,
+    required String Images,
+    required String title,
+    required String subtitle,
+  }) =>
+      SingleChildScrollView(
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                Images,
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              Text(
+                title,
+                style: GoogleFonts.poppins(
+                    color: Colors.teal.shade700,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  subtitle,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    color: Colors.black45,
+                    fontSize: 13),
+                ),
+              )
+            ],
+          ),
+        ),
+      );
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return Stack(children: <Widget>[
-      Scaffold(
-        // appBar: AppBar(
-        //   title: Text("Guide"),
-        //   centerTitle: true,
-        //   backgroundColor: Colors.indigo.withOpacity(0.90),
-        //   shape: RoundedRectangleBorder(
-        //     borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
-        //   ),
-        // ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "GUIDE LOCATION",
+          style: GoogleFonts.poppins(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.indigo.withOpacity(0.90),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
+        ),
       ),
-      !_hideIntroduction
-          ? Positioned(
-              child: Scaffold(
-                body: Container(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(_imageBG), fit: BoxFit.fill)),
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Card(
-                          child: Container(
-                            width: size.width - 60,
-                            height: 480,
-                            color: Colors.white,
-                            child: PageView(
-                              controller: _pageController,
-                              children: <Widget>[
-                                _pageViewChildimage(_imageList[0]),
-                                _pageViewChildimage(_imageList[1]),
-                                _pageViewChildimage(_imageList[2]),
-                              ],
-                            ),
-                          ),
-                          semanticContainer: true,
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                          elevation: 3,
-                          margin: EdgeInsets.all(10),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(14.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              _pageViewIndicator(1),
-                              _pageViewIndicator(2),
-                              _pageViewIndicator(3),
-                            ],
-                          ),
-                        ),
-                        Flexible(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.only(left: 40.0, right: 40.0),
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      new BorderRadius.circular(12.0)),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Text(
-                                    _currentPage < 2
-                                        ? 'Next'
-                                        : 'Okay ! Go to Main',
-                                    style: TextStyle(
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              textColor: _currentPage < 2
-                                  ? Colors.black
-                                  : Colors.white,
-                              color: _currentPage < 2
-                                  ? Colors.white
-                                  : Colors.blue[900],
-                              padding: EdgeInsets.all(10),
-                              onPressed: () {
-                                if (_pageController.page!.toInt() < 2) {
-                                  _pageController.animateToPage(
-                                      _pageController.page!.toInt() + 1,
-                                      duration: Duration(milliseconds: 200),
-                                      curve: Curves.easeIn);
-                                }else {
-                                  setState(() {
-                                    _hideIntroduction = true;
-                                    _pageController.jumpToPage(0);
-                                  });
-                                }
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (context) => Homemain()),
-                                // );
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
+      body: Container(
+        padding: const EdgeInsets.only(bottom: 0),
+        child: PageView(
+          controller: controller,
+          onPageChanged: (index) {
+            setState(() => isLastPage = index == 2);
+          },
+          children: [
+            buildPage(
+                color: Colors.green.shade100,
+                Images: 'assets/images/guides-1.png',
+                title: 'Choose category',
+                subtitle: 'On the first page, there are attractions for you to choose from. which will have a category for each location Allows you to select the desired attraction category.'),
+            buildPage(
+                color: Colors.green.shade100,
+                Images: 'assets/images/guides-2.png',
+                title: 'Choose tourism attraction',
+                subtitle: 'After selecting the attraction category Allows you to select the desired attractions.'),
+            buildPage(
+                color: Colors.green.shade100,
+                Images: 'assets/images/guides-3.png',
+                title: 'Click to detail',
+                subtitle: 'You can find details of the location on this page. When you decide to see the attraction, press Start to watch a 360 degree video of the attraction.'),
+          ],
+        ),
+      ),
+      bottomSheet: isLastPage
+          ? TextButton(
+              style: TextButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadiusDirectional.circular(3)
+                ),
+                primary: Colors.teal.shade700,
+                backgroundColor: Colors.white,
+                minimumSize: const Size.fromHeight(60)
+              ),
+              child: Text(
+                'Get Started',
+                style: GoogleFonts.poppins(
+                  fontSize: 20),
+              ),
+              onPressed: () async {
+                final prefs = await SharedPreferences.getInstance();
+                prefs.setBool('showHome', true);
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => Home()),
+                );
+              },)
+          : Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    child: Text('SKIP'),
+                    onPressed: () => controller.jumpToPage(2),
+                  ),
+                  Center(
+                    child: SmoothPageIndicator(
+                      controller: controller,
+                      count: 3,
+                      effect: WormEffect(
+                        spacing: 16,
+                        dotColor: Colors.black26,
+                        activeDotColor: Colors.teal.shade700,
+                      ),
+                      onDotClicked: (index) => controller.animateToPage(index,
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeInOut),
                     ),
                   ),
-                ),
+                  TextButton(
+                    child: Text('NEXT'),
+                    onPressed: () => controller.nextPage(
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeInOut),
+                  ),
+                ],
               ),
-            )
-          : Container(),
-    ]);
+            ),
+    );
   }
 }

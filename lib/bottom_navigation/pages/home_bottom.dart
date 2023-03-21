@@ -4,11 +4,9 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:samui_vr_app/homescreen/feedback_screen.dart';
-import 'package:samui_vr_app/homescreen/guide_page.dart';
+import 'package:samui_vr_app/homescreen/guide_screen.dart';
 import 'package:samui_vr_app/homescreen/transport_screen.dart';
-
 import '../../screens/home_screen.dart';
-
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -30,7 +28,7 @@ class _HomeState extends State<Home> {
       size: 25,
     ),
     Icon(
-      FontAwesomeIcons.screwdriverWrench,
+      FontAwesomeIcons.circleInfo,
       color: Colors.amber.shade500,
       size: 25,
     ),
@@ -42,7 +40,7 @@ class _HomeState extends State<Home> {
   ];
 
   int index = 0;
-
+  final ScrollController listViewController = new ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +52,7 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.white,
         color: Colors.indigo.shade500,
-        height: 70,
+        height: 60,
         animationDuration: const Duration(milliseconds: 300),
         items: items,
         index: index,
@@ -66,11 +64,12 @@ class _HomeState extends State<Home> {
         // animationCurve: ,
       ),
       body: Container(
-          color: Colors.white,
-          width: double.infinity,
-          height: double.infinity,
-          alignment: Alignment.center,
-          child: getSelectedWidget(index: index)),
+        color: Colors.white,
+        width: double.infinity,
+        height: double.infinity,
+        alignment: Alignment.center,
+        child: getSelectedWidget(index: index),
+      ),
     );
   }
 

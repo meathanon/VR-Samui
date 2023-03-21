@@ -42,7 +42,13 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
         if (snapshot.connectionState == ConnectionState.done) {
           return Scaffold(
             appBar: AppBar(
-              title: Text("Feedback"),
+              title: Text(
+                "FEEDBACK",
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               centerTitle: true,
               automaticallyImplyLeading: false,
               backgroundColor: Colors.indigo.withOpacity(0.90),
@@ -52,157 +58,187 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               ),
             ),
             body: SingleChildScrollView(
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: 70, horizontal: 25),
-                margin: EdgeInsets.symmetric(vertical: 85, horizontal: 25),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.amber.shade300,
-                  boxShadow: [
-                    BoxShadow(
-                        color: Theme.of(context).hintColor.withOpacity(0.2),
-                        offset: Offset(0, 5),
-                        blurRadius: 20)
-                  ],
-                ),
-                child: Form(
-                  key: formKey,
-                  child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(18),
+                    margin: EdgeInsets.only(top: 60, left: 30, right: 30),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white70,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Theme.of(context).hintColor.withOpacity(0.1),
+                            offset: Offset(0, 1),
+                            blurRadius: 10),
+                      ],
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Center(
-                        //   child: Text(
-                        //     "Feedback",
-                        //     style: GoogleFonts.poppins(
-                        //       color: Colors.grey.shade900,
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 40,
-                        //     ),
-                        //   ),
-                        // ),
-                        // SizedBox(
-                        //   height: 10,
-                        // ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              FontAwesomeIcons.userLarge,
-                              color: Colors.indigo.shade500,
-                            ),
-                            labelText: 'Name',
-                            labelStyle: GoogleFonts.poppins(
-                              color: Colors.indigo,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                            ),
+                        Text(
+                          "Review Application",
+                          style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
                           ),
-                          validator:
-                              RequiredValidator(errorText: "Please enter name"),
-                          onSaved: (String? name) {
-                            myTraveler.name = name;
-                          },
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        // Text(
-                        //   "Surname",
-                        //   style: TextStyle(fontSize: 20),
-                        // ),
-                        // TextFormField(),
-                        // SizedBox(
-                        //   height: 15,
-                        // ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              FontAwesomeIcons.solidEnvelope,
-                              color: Colors.indigo.shade500,
-                            ),
-                            labelText: 'Email',
-                            labelStyle: GoogleFonts.poppins(
-                              color: Colors.indigo,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                            ),
-                          ),
-                          validator: MultiValidator([
-                            EmailValidator(
-                                errorText: "Please enter a valid email"),
-                            RequiredValidator(errorText: "Please enter email")
-                          ]),
-                          onSaved: (String? email) {
-                            myTraveler.email = email;
-                          },
-                          keyboardType: TextInputType.emailAddress,
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              FontAwesomeIcons.solidComment,
-                              color: Colors.indigo.shade500,
-                            ),
-                            labelText: 'Description',
-                            labelStyle: GoogleFonts.poppins(
-                              color: Colors.indigo,
-                            ),
-                            // contentPadding: EdgeInsets.symmetric(vertical: 50),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                            ),
-                          ),
-                          onSaved: (String? description) {
-                            myTraveler.description = description;
-                          },
-                        ),
-                        SizedBox(
-                          height: 50,
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                              child: Text("Send", style: GoogleFonts.poppins()),
-                              style: ElevatedButton.styleFrom(
-                                  primary: Colors.green.shade600,
-                                  textStyle: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w800),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(13),
-                                  )),
-                              onPressed: () async {
-                                if (formKey.currentState!.validate()) {
-                                  formKey.currentState!.save();
-                                  await _travelerCollection.add({
-                                    "name": myTraveler.name,
-                                    "email": myTraveler.email,
-                                    "description": myTraveler.description
-                                  });
-                                  formKey.currentState!.reset();
-                                }
-                              }),
-                        )
+                        Text("Contact and report to developers.",
+                        style: GoogleFonts.poppins(
+                          color: Colors.black54,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),)
                       ],
                     ),
                   ),
-                ),
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(30),
+                    margin: EdgeInsets.only(
+                        top: 25,
+                        left: 30,
+                        right: 30), //vertical: 85, horizontal: 30
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white70,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Theme.of(context).hintColor.withOpacity(0.1),
+                            offset: Offset(0, 1),
+                            blurRadius: 10),
+                      ],
+                    ),
+                    child: Form(
+                      key: formKey,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextFormField(
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  FontAwesomeIcons.userLarge,
+                                  color: Colors.indigo.shade500,
+                                ),
+                                labelText: 'Name',
+                                labelStyle: GoogleFonts.poppins(
+                                  color: Colors.black54,
+                                  fontSize: 16,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.indigo),
+                                ),
+                              ),
+                              validator: RequiredValidator(
+                                  errorText: "Please enter name"),
+                              onSaved: (String? name) {
+                                myTraveler.name = name;
+                              },
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  FontAwesomeIcons.solidEnvelope,
+                                  color: Colors.indigo.shade500,
+                                ),
+                                labelText: 'Email',
+                                labelStyle: GoogleFonts.poppins(
+                                  color: Colors.black54,
+                                  fontSize: 16,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.indigo),
+                                ),
+                              ),
+                              validator: MultiValidator([
+                                EmailValidator(
+                                    errorText: "Please enter a valid email"),
+                                RequiredValidator(
+                                    errorText: "Please enter email")
+                              ]),
+                              onSaved: (String? email) {
+                                myTraveler.email = email;
+                              },
+                              keyboardType: TextInputType.emailAddress,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  FontAwesomeIcons.solidComment,
+                                  color: Colors.indigo.shade500,
+                                ),
+                                labelText: 'Description',
+                                labelStyle: GoogleFonts.poppins(
+                                  color: Colors.black54,
+                                  fontSize: 16,
+                                ),
+                                // contentPadding: EdgeInsets.symmetric(vertical: 50),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.indigo),
+                                ),
+                              ),
+                              onSaved: (String? description) {
+                                myTraveler.description = description;
+                              },
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton.icon(
+                                // <-- ElevatedButton
+                                style: TextButton.styleFrom(
+                                  textStyle: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                  backgroundColor: Colors.indigo.shade700,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                onPressed: () async {
+                                  if (formKey.currentState!.validate()) {
+                                    formKey.currentState!.save();
+                                    await _travelerCollection.add({
+                                      "name": myTraveler.name,
+                                      "email": myTraveler.email,
+                                      "description": myTraveler.description,
+                                    });
+                                    formKey.currentState!.reset();
+                                  }
+                                },
+                                icon: Icon(
+                                  FontAwesomeIcons.solidPaperPlane,
+                                  size: 16,
+                                ),
+                                label: Text('SEND'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           );

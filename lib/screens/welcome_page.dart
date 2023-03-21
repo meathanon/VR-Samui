@@ -1,10 +1,12 @@
-// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors, prefer_interpolation_to_compose_strings
+// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors, prefer_interpolation_to_compose_strings, use_function_type_syntax_for_parameters
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:samui_vr_app/screens/widget/app_large_text.dart';
 import 'package:samui_vr_app/screens/widget/responsive_button.dart';
 import '../cubit/app_cubits.dart';
+import 'widget/app_description.dart';
 import 'widget/app_text.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -16,10 +18,10 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage> {
   List images = [
-    "19_generated.jpg",
-    "20_generated.jpg",
-    "21_generated.jpg",
-    "22_generated.jpg",
+    "wc-app-2.png",
+    "wc-app-3.png",
+    "wc-app-4.png",
+    "wc-app-5.png",
   ];
 
   @override
@@ -51,13 +53,25 @@ class _WelcomePageState extends State<WelcomePage> {
                           height: 20,
                         ),
                         Container(
-                          width: 250,
-                          child: AppText(
-                            text:
-                                "Moutain hikes give you an incredible sens of freedom along with endurance teste",
-                            color: Colors.grey.shade800,
-                            size: 14,
+                          margin: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(0, 0, 0, 0.7),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
                           ),
+                          // width: 120,
+                          // child: Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: Text(
+                          //     descriptionpage[index].description!,
+                          //     style: GoogleFonts.baloo2(
+                          //        color: Colors.white,
+                          //         fontSize: 18,
+                          //         fontWeight: FontWeight.bold,
+                          //     ), 
+                          //   ),
+                          // ),
                         ),
                         SizedBox(
                           height: 40,
@@ -78,7 +92,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       ],
                     ),
                     Column(
-                      children: List.generate(3, (indexDots) {
+                      children: List.generate(4, (indexDots) {
                         return Container(
                           margin: const EdgeInsets.only(bottom: 2),
                           width: 8,
@@ -90,7 +104,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                   : Colors.indigo.shade700.withOpacity(0.4)),
                         );
                       }),
-                    )
+                    ),
                   ],
                 ),
               ),

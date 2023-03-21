@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:samui_vr_app/homescreen/feedback_screen.dart';
-import 'package:samui_vr_app/homescreen/home_bottom.dart';
 import 'package:samui_vr_app/screen/login.dart';
 import 'package:samui_vr_app/screens/welcome_page.dart';
 import 'package:samui_vr_app/screens/widget/test.dart';

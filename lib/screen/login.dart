@@ -6,7 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:samui_vr_app/bottom_navigation/pages/home_bottom.dart';
-import 'package:samui_vr_app/homescreen/home_bottom.dart';
 import 'package:samui_vr_app/screen/register.dart';
 import 'package:samui_vr_app/screens/home_screen.dart';
 
@@ -129,9 +128,10 @@ class _LoginState extends State<Login> {
                       Center(
                         child: Text(
                           "Welcome to VR App",
-                          style: GoogleFonts.fredokaOne(
+                          style: GoogleFonts.baloo2(
                             color: Colors.grey[850],
-                            fontSize: 27,
+                            fontSize: 29,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -139,9 +139,10 @@ class _LoginState extends State<Login> {
                       Center(
                         child: Text(
                           "Samui island, Surat Thani.",
-                          style: GoogleFonts.fredokaOne(
+                          style: GoogleFonts.baloo2(
                             color: Colors.grey[850],
-                            fontSize: 17,
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),

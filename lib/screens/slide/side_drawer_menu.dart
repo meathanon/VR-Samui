@@ -14,27 +14,20 @@ class SideDrawerMenu extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(),
-          ListTile(
-            leading: Icon(Icons.home, color: Colors.amber.shade600),
-            title: Text('About SCIT'),
-            onTap: () {
-              Navigator.pushNamed(context, '/home');
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.school_rounded, color: Colors.amber.shade600),
-            title: Text('Cirriculam'),
-            onTap: () {
-              Navigator.pushNamed(context, '/curriculam');
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.location_city, color: Colors.amber.shade600),
-            title: Text('Contact'),
-            onTap: () {
-              Navigator.pushNamed(context, '/contact');
-            },
-          ),
+          // ListTile(
+          //   leading: Icon(Icons.home, color: Colors.amber.shade600),
+          //   title: Text('About SCIT'),
+          //   onTap: () {
+          //     Navigator.pushNamed(context, '/home');
+          //   },
+          // ),
+          // ListTile(
+          //   leading: Icon(Icons.school_rounded, color: Colors.amber.shade600),
+          //   title: Text('Cirriculam'),
+          //   onTap: () {
+          //     Navigator.pushNamed(context, '/curriculam');
+          //   },
+          // ),
         ],
       ),
     );
@@ -53,7 +46,7 @@ class DrawerHeader extends StatelessWidget {
       color: Colors.indigo.shade600,
       child: Column(
         children: [
-          Text('SCIT PSU Surat', style: GoogleFonts.anton(fontSize: 35, color: Colors.white),)
+          Text('', style: GoogleFonts.anton(fontSize: 35, color: Colors.white),)
         ],
       ),
     );
