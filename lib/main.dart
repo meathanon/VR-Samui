@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         home: AnimatedSplashScreen(
           splash: Lottie.asset('assets/37442-passport-travel.json'),
           backgroundColor: Colors.indigo.shade700,
-          nextScreen: MyHomePage(), //WelcomePage
+          nextScreen: WelcomePage(), //WelcomePage
           splashIconSize: 200,
           duration: 3000,
           splashTransition: SplashTransition.fadeTransition,

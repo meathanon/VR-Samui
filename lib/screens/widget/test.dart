@@ -11,7 +11,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    final Uri url = Uri.parse("https://.youtube.com/");
+    final Uri url = Uri.parse("https://www.youtube.com/watch?v=XG4rWqiG0jo");
     return Scaffold(
         body: Center(
             child: Container(
